@@ -1,0 +1,5 @@
+#tabla_todos_los_coches img {
+    width: 500px;
+    object-fit: cover;
+    border-radius: 5px;
+}
