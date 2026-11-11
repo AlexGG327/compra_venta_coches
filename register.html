@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<script src="js/auth.js"></script>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <div class="container-fluid">
@@ -25,30 +26,37 @@
 
 <form>
     <div>
-        <label>Correo electrónico:</label><br>
-        <input type="email" id="correo-electronico" required>
-    </div>
-
-    <div>
         <label>Nombre de usuario:</label><br>
         <input type="text" id="nombre" required>
     </div>
 
     <div>
-        <label>Ubicación (Coordenadas: latitud y longitud):</label><br>
-        <input type="number" id="coordenadas" required>
+        <label>Correo electrónico:</label><br>
+        <input type="email" id="correo_electronico" required>
+    </div>
+
+    <div>
+        <label>Ubicación (Coordenadas: latitud):</label><br>
+        <input type="number" id="longitud" required>
+    </div>
+
+    <div>
+        <label>Ubicación (Coordenadas: longitud):</label><br>
+        <input type="number" id="latitud" required>
     </div>
 
     <div>
         <label>Contraseña:</label><br>
-        <input type="text" id="nombre" required>
+        <input type="text" id="contraseña1" required>
     </div>
 
     <div>
         <label>Confirmación de contraseña:</label><br>
-        <input type="text" id="nombre" required>
+        <input type="text" id="contraseña2" required>
     </div>
 </form>
+
+<button type="button" onclick="registrarse(nombre.value, correo_electronico.value, contraseña1.value, latitud.value, longitud.value)">Enviar</button>
 
 </body>
 </html>

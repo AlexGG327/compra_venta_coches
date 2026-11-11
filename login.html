@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<script src="js/auth.js"></script>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <div class="container-fluid">
@@ -26,14 +27,16 @@
 <form>
     <div>
         <label>Correo electrónico:</label><br>
-        <input type="email" id="correo-electronico" required>
+        <input type="email" id="correo_electronico" required>
     </div>
 
     <div>
         <label>Contraseña:</label><br>
-        <input type="text" id="nombre" required>
+        <input type="text" id="contraseña" required>
     </div>
 </form>
+
+<button type="button" onclick="iniciar_sesion(correo_electronico.value, contraseña.value)">Enviar</button>
 
 </body>
 </html>
