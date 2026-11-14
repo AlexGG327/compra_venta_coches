@@ -24,6 +24,8 @@ function registrarse(nombre, email, password, latitud, longitud) {
         .catch(error => {
             console.error("Error al registarse: ", error);
         });
+
+        iniciar_sesion(email, password)
 }
 
 function iniciar_sesion(email, password) {
@@ -47,6 +49,7 @@ function iniciar_sesion(email, password) {
             console.log("Respuesta del post: ", data);
 
             localStorage.setItem("token", data.access_token);
+            localStorage.setItem("user", data.user);
 
             console.log("Token guardado: ", localStorage.getItem("token"));
         })

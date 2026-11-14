@@ -8,37 +8,31 @@
     <meta name="description" content="Iniciar sesión con tu cuenta.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
 <script src="js/auth.js"></script>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="coches.html"><img src="img/icono.png" class="img-rounded" alt="Logotipo" height="50" width="50"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
+<h2>Iniciar Sesión</h2>
 
-<br><br><br><br><br>
-
-<form>
-    <div>
-        <label>Correo electrónico:</label><br>
-        <input type="email" id="correo_electronico" required>
-    </div>
-
-    <div>
-        <label>Contraseña:</label><br>
-        <input type="text" id="contraseña" required>
-    </div>
-</form>
+    <form id ="login">
+    <label for="email">Email</label>
+    <br>
+    <input type="email" id ="correo_electronico" placeholder="introduzca el email" required>
+    <br>
+    <label for="contraseña">Contraseña</label>
+    <br>
+    <input type="password" id="contraseña" placeholder="introduzca la contraseña" required>
+    <br>
+    <button class="boton" type="submit">enviar</button>
+    </form>
 
 <button type="button" onclick="iniciar_sesion(correo_electronico.value, contraseña.value)">Enviar</button>
 
-<a type="button" href="register.html">Registrarse</a>
+<a href="register.html">
+    <button type="button">Registrarse</button>
+</a>
 
 </body>
 </html>
