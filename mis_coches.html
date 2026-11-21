@@ -11,11 +11,30 @@
     <link rel="stylesheet"
         href="https://cdn.datatables.net/3.1.4/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+
+        <style>
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+    </style>
+
 </head>
 
 <body onload="crear_tabla_mis_coches()">
 
-<script src="js/main.js"></script>
+<script src="js/mis_coches.js"></script>
 <script src="https://cdn.datatables.net/3.1.4/js/dataTables.min.js"></script>
 
 <script src="js/navbar.js"></script>
@@ -26,7 +45,9 @@
 
 <h1>Mis coches.</h1>
 
-<table id="tabla_mis_coches">
+<button onclick="crear_tabla_mis_coches()">Cargar coches</button>
+
+<table>
     <thead>
         <tr>
             <th>Modelo</th>
@@ -34,11 +55,12 @@
             <th>Kilómetros</th>
             <th>Descripción</th>
             <th>Categoria</th> <!---Nuevo, KM0, Segunda Mano-->
-            <th>Foto</th>
             <th>Estado de compra</th> <!---Comprado o Disponible-->
+            <th>Foto</th>
+            <th>Boton</th>
         </tr>
     </thead>
-    <tbody></tbody>
+    <tbody id="tabla_mis_coches"></tbody>
 </table>
 
 </body>

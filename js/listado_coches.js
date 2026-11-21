@@ -38,5 +38,5 @@ async function crear_tabla_todos_los_coches() {
 
     } catch (error) {
         console.error("Error:", error);
-    }
+    }   
 }

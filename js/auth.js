@@ -49,7 +49,7 @@ function iniciar_sesion(email, password) {
             console.log("Respuesta del post: ", data);
 
             localStorage.setItem("token", data.access_token);
-            localStorage.setItem("user", data.user);
+            localStorage.setItem("email", email);
 
             console.log("Token guardado: ", localStorage.getItem("token"));
         })
