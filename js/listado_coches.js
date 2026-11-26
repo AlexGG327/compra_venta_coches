@@ -1,4 +1,6 @@
-async function crear_tabla_todos_los_coches() {
+let todos_los_coches = []
+
+async function recibir_coches() {
     try {
 
         const token = localStorage.getItem("token");
@@ -13,30 +15,110 @@ async function crear_tabla_todos_los_coches() {
         }
 
         const coches = await respuesta.json();
-        const lista = document.getElementById("tabla_todos_los_coches");
-        lista.innerHTML = "";
+        todos_los_coches = coches;
 
-        coches.forEach(function(coche) {
-            const fila = lista.insertRow();
+        crear_tabla_coches(coches);
+        iniciar_datatable();
+    }
+    
+    catch (error) {
+        console.error("Error:", error);
+    } 
+    
+}
 
-            const posiciones =[coche.name, coche.price, coche.km, coche.description, coche.category, coche.state]
+function crear_tabla_coches(coches) {
 
-            posiciones.forEach(function(valor) {
-                fila.insertCell().textContent = valor;
-            });
+    const lista = document.getElementById("tabla_todos_los_coches");
+    lista.innerHTML = "";
 
-            const celdaImagen = fila.insertCell();
 
-            if (coche.image) {
-                const img = document.createElement("img");
-                img.src = coche.image;
-                img.alt = "Imagen de " + coche.name;
-                img.className = "imagen-coche";
-                celdaImagen.appendChild(img);
-            }
+    coches.forEach(function(coche) {
+        const fila = lista.insertRow();
+
+        const posiciones =[coche.name, coche.price, coche.km, coche.description, coche.category, coche.state]
+
+        posiciones.forEach(function(valor) {
+            fila.insertCell().textContent = valor;
         });
 
-    } catch (error) {
-        console.error("Error:", error);
-    }   
+        const celdaImagen = fila.insertCell();
+
+        if (coche.image) {
+            const img = document.createElement("img");
+            img.src = coche.image;
+            img.alt = "Imagen de " + coche.name;
+            img.className = "imagen-coche";
+            celdaImagen.appendChild(img);
+        }
+        const celdaBoton = fila.insertCell();
+        const boton = document.createElement("button");
+        boton.className = "boton-carrito";
+        boton.textContent = "Añadir al carrito";
+        boton.type = "button";
+        boton.className = "boton-carrito";
+
+        boton.onclick = function() {
+            carrito(coche);
+        };
+
+        celdaBoton.appendChild(boton);
+        
+    });
+}
+
+//import {carrito} from "./carrito.js";
+
+function carrito(coche) {
+
+    let coches_carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    coches_carrito.push(coche);
+
+    localStorage.setItem("carrito", JSON.stringify(coches_carrito));
+
+    alert("Coche añadido al carrito");
+    
+}
+
+function buscador() {
+
+    const nombre = document.getElementById("nombre_coche").value.toLowerCase();
+
+    const coches_filtrados = todos_los_coches.filter(function(coche) {
+
+        return coche.name.toLowerCase().includes(nombre);
+
+    });
+
+    crear_tabla_coches(coches_filtrados);
+}
+
+let datatable;
+
+function iniciar_datatable() {
+
+    if (datatable) {
+        datatable.destroy();
+    }
+
+    datatable = new DataTable("#tabla_coches", {
+        paging: false,
+        searching: false,
+
+        order: [[1, "asc"]],
+
+        columnDefs: [
+            {
+                targets: [0, 3, 4, 5, 6, 7],
+                orderable: false
+            }
+        ],
+
+        language: {
+        
+            emptyTable: "No hay coches disponibles",
+            zeroRecords: "No se encontraron coches"
+        }
+    });
 }

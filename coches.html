@@ -14,6 +14,8 @@
         href="https://cdn.datatables.net/3.1.4/css/dataTables.dataTables.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+
     <style>
     table {
     font-family: arial, sans-serif;
@@ -30,17 +32,26 @@
     tr:nth-child(even) {
     background-color: #dddddd;
     }
+    input{
+    position:absolute;
+    top:27%;
+    }
     </style>
     <link rel="stylesheet" href="css/estilos.css">
 
 </head>
 
-<body onload="crear_tabla_todos_los_coches()">
+<body onload="recibir_coches()">
 
-<button onclick="crear_tabla_todos_los_coches()">Cargar coches</button>
+<button onclick="recibir_coches()">Cargar coches</button>
+<input type="text" id="nombre_coche" placeholder="Introduzca el nombre del coche"oninput="buscador()">
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
 
 <script src="js/listado_coches.js"></script>
-<script src="https://cdn.datatables.net/3.1.4/js/dataTables.min.js"></script>
 
 <script src="js/navbar.js"></script>
 
@@ -50,7 +61,7 @@
 
 <h1>Coches disponibles.</h1>
 
-<table>
+<table id="tabla_coches">
     <thead>
         <tr>
             <th>Modelo</th>
@@ -60,10 +71,12 @@
             <th>Categoria</th> <!---Nuevo, KM0, Segunda Mano-->
             <th>Estado de compra</th> <!---Comprado o Disponible-->
             <th>Foto</th>
+            <th>comprar</th>
         </tr>
     </thead>
     <tbody id="tabla_todos_los_coches"></tbody>
 </table>
+
 
 </body>
 </html>

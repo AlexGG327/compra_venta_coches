@@ -25,14 +25,10 @@
     <br>
     <input type="password" id="contraseña" placeholder="introduzca la contraseña" required>
     <br>
-    <button class="boton" type="submit">enviar</button>
+    <button class="boton" type="button" onclick="iniciar_sesion(correo_electronico.value, contraseña.value)">Enviar</button>
+    <br>
+    <a href="register.html"><button class="boton" type="button">Registrarse</button></a>
     </form>
-
-<button type="button" onclick="iniciar_sesion(correo_electronico.value, contraseña.value)">Enviar</button>
-
-<a href="register.html">
-    <button type="button">Registrarse</button>
-</a>
 
 </body>
 </html>
