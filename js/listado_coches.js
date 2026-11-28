@@ -20,11 +20,10 @@ async function recibir_coches() {
         crear_tabla_coches(coches);
         iniciar_datatable();
     }
-    
+
     catch (error) {
         console.error("Error:", error);
-    } 
-    
+    }
 }
 
 function crear_tabla_coches(coches) {
@@ -32,11 +31,10 @@ function crear_tabla_coches(coches) {
     const lista = document.getElementById("tabla_todos_los_coches");
     lista.innerHTML = "";
 
-
     coches.forEach(function(coche) {
         const fila = lista.insertRow();
 
-        const posiciones =[coche.name, coche.price, coche.km, coche.description, coche.category, coche.state]
+        const posiciones =[coche.name, coche.price + " €", coche.km + " km", coche.description, coche.category, coche.state]
 
         posiciones.forEach(function(valor) {
             fila.insertCell().textContent = valor;
@@ -51,19 +49,30 @@ function crear_tabla_coches(coches) {
             img.className = "imagen-coche";
             celdaImagen.appendChild(img);
         }
-        const celdaBoton = fila.insertCell();
-        const boton = document.createElement("button");
-        boton.className = "boton-carrito";
-        boton.textContent = "Añadir al carrito";
-        boton.type = "button";
-        boton.className = "boton-carrito";
 
-        boton.onclick = function() {
-            carrito(coche);
-        };
+        if (coche.state == "En venta") {
+            const celdaBoton = fila.insertCell();
+            const boton = document.createElement("button");
+            boton.className = "boton-carrito";
+            boton.textContent = "Añadir al carrito";
+            boton.type = "button";
+            boton.className = "boton-carrito";
 
-        celdaBoton.appendChild(boton);
-        
+            boton.onclick = function() {
+                carrito(coche);
+            };
+
+            celdaBoton.appendChild(boton);
+        }
+
+        else {
+            const celdaBoton = fila.insertCell();
+            const div = document.createElement("div");
+            div.className = "boton-carrito";
+            div.textContent = "No se puede comprar";
+
+            celdaBoton.appendChild(div);
+        }
     });
 }
 
